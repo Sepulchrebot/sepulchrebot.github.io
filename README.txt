@@ -1,13 +1,11 @@
-SEPULCHRE WEBSITE V6 — COMPLETE FIXED WEBSITE
+SEPULCHRE WEBSITE v7 — CLEAN PRICING + REMOVE EMBLEM PANEL
 
-Upload ALL files inside this extracted folder to the ROOT of your GitHub repository Sepulchrebot/sepulchrebot.github.io, replacing same-named files. Do not upload the ZIP itself or a containing parent folder.
+Changes from v6:
+- Removed entire "03 / The Emblem" homepage panel. The logo remains in the floating navigation.
+- Renumbered the homepage Premium Access and Transparency sections.
+- Fixed clipping of the large 5 in the Purchase page price by displaying $5.99 as a single stable typographic amount.
+- Added stylesheet version v7.0 to help browsers load new CSS.
+- Kept the Purchase nav button opening purchase.html, and page Purchase button opening Discord.
+- No changes to original Terms, Privacy or Refund text, nor existing URLs.
 
-This package intentionally contains NO assets/ folder. The actual original silver S emblem and wide Sepulchre artwork are embedded inside style.css; they will load whenever the CSS loads. This prevents missing-artwork problems caused by missing nested folders.
-
-Navigation: Purchase (top pill) -> purchase.html. Purchase (on pricing page) -> official Discord https://discord.gg/88nA6GTD7Q. Support -> same Discord server. Clicking the logo -> Home and reload if already there.
-
-Existing legal paths remain terms.html, privacy.html and refunds.html. Legal text is unchanged.
-
-After upload: GitHub repository > Actions > latest pages build and deployment = green. Visit https://sepulchrebot.github.io and press Ctrl+Shift+R.
-
-No live status or fabricated member/server counts included.
+UPLOAD: Extract this zip; upload all files in its root into the root of Sepulchrebot/sepulchrebot.github.io; replace corresponding files; commit. After GitHub Pages finishes deploying use Ctrl+Shift+R.

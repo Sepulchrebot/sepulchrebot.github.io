@@ -96,3 +96,10 @@ h1 em,h2 em{background:linear-gradient(105deg,#fff1fa 5%,#d8bbcf 53%,#a79ba9 100
 @keyframes purchase-glow-v6{0%,100%{box-shadow:0 0 11px #d6bac74f,inset 0 0 10px #f9e8f022}50%{box-shadow:0 0 24px #e9c8e38a,inset 0 0 12px #f9e8f055}}
 @media(max-width:600px){.hero-art{background-position:64% center!important;filter:brightness(1.12)}.hero-shade{background:linear-gradient(0deg,#070609fa 0%,#070609eb 45%,#07060945 100%)}.showcase-embedded-art{min-height:235px}}
 @media(prefers-reduced-motion:reduce){.nav-btn.purchase,.nav-btn.purchase::after{animation:none!important}}
+
+/* v7 — stable pricing typography, no cropped glyphs */
+.price.price-clean {display:flex;flex-wrap:wrap;align-items:baseline;column-gap:14px;row-gap:3px;margin:22px 0 26px;overflow:visible;min-height:0;}
+.price.price-clean .amount {display:inline-block;overflow:visible;white-space:nowrap;font-family:Manrope,Arial,sans-serif;font-size:clamp(68px,8vw,112px);font-weight:800;letter-spacing:-.065em;line-height:1.18;padding:.06em .10em .09em .015em;margin:-.06em -.10em -.09em 0;font-variant-numeric:lining-nums tabular-nums;background:linear-gradient(120deg,#fff9fe 4%,#e6d7e5 48%,#c9b8c8 95%);background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 14px #dfbfd22b);}
+.price.price-clean .once {margin:0 0 .14em;color:#beb4be;font-size:14px;white-space:nowrap;}
+@media(max-width:600px){.price.price-clean .amount {font-size:clamp(62px,16vw,92px)}.price.price-clean .once{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.price.price-clean .amount{transition:none}}
