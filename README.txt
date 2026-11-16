@@ -1,15 +1,23 @@
-SEPULCHRE OFFICIAL WEBSITE v3 — GITHUB PAGES
+SEPULCHRE OFFICIAL WEBSITE v4 — READY FOR GITHUB PAGES
 
-1. Extract this ZIP locally.
-2. On GitHub, open your existing site repository and upload the FILES INSIDE this ZIP (not the ZIP itself).
-3. Commit index.html, style.css, terms.html, privacy.html, refunds.html, and the assets folder to the repository root.
-4. If GitHub asks to replace existing files, commit the replacements.
-5. Pages settings: main branch, /(root). Refresh with Ctrl+Shift+R after deployment.
+This update is a complete static website with your original Sepulchre banner and silver S emblem.
 
-IMPORTANT: Core banner and emblem images are ALSO embedded in style.css. Therefore the design works even if the assets folder is accidentally omitted, as long as style.css is uploaded. assets/ contains standalone copies and the favicon.
+INSTALL
+1. Extract ZIP on your computer.
+2. Upload ALL extracted files AND the assets folder to the ROOT of the Sepulchrebot GitHub Pages repository (sepulchrebot.github.io).
+3. Replace existing files of the same names; commit changes.
+4. Check repository > Actions for successful Pages deployment; refresh with Ctrl+Shift+R.
+5. Confirm https://sepulchrebot.github.io/assets/sepulchre-banner.webp and /assets/sepulchre-emblem.webp open directly.
 
-LEGAL URLS STAY THE SAME: /terms.html, /privacy.html, /refunds.html.
-SUPPORT INVITE: https://discord.gg/88nA6GTD7Q
-BOT INSTALL BUTTON: not included because the official installation URL has not been provided.
+PAGES
+Home /, Features /features.html, Commands /commands.html, Embeds /embeds.html, Status /status.html, FAQ /faq.html, Documentation /docs.html, Purchase /purchase.html, existing Terms /terms.html, Privacy /privacy.html, Refunds /refunds.html.
 
-This is a static GitHub Pages website; no payments, databases or user accounts. Policy content retained from your previously supplied documents (November 14, 2026).
+PAYMENTS
+Purchase/Support buttons link to official Discord: https://discord.gg/88nA6GTD7Q
+Supported methods shown: Crypto, Skrill, Payoneer, Wise. Website DOES NOT accept payments. Price $5.99 one time / server from existing legal documents.
+
+DESIGN
+Inspired by Bored-style floating navigation and large pricing typography, but original Sepulchre arrangement, content and assets. No copied source or branding.
+
+NOTE
+Status is an informational page, NOT a live monitor. Commands and embeds are descriptive / illustrative rather than live API data. The original legal article contents remain unchanged.
