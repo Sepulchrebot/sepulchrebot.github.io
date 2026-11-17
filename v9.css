@@ -19,3 +19,19 @@ html{scroll-padding-top:85px}body,body:has(.v8-home){background:#070709!importan
 @media(max-width:760px){.pill-nav.pill-nav-compact{max-width:100%!important}.v9-hero{min-height:520px;padding:95px 12px 60px!important}.v9-hero h1{font-size:clamp(48px,11vw,75px)}.v9-section-head{display:block}.v9-section-head>p{max-width:580px}.v9-duo{display:block;padding:48px 0}.v9-duo-links{margin-top:25px}.v9-purchase-band{padding:34px 24px;display:block;margin-top:50px}.v9-price{margin-top:30px}.v9-final{padding-bottom:85px}}
 @media(max-width:480px){.v9-grid{grid-template-columns:1fr}.v9-feature{min-height:185px}.v9-hero-actions{width:100%}.v9-button{justify-content:center}.v9-intro{font-size:14px}.v9-hero-meta{font-size:8px;letter-spacing:.08em}.v9-price strong{font-size:69px}}
 @media(prefers-reduced-motion:reduce){.nav-btn.purchase:before{animation:none!important}}
+
+/* SEPULCHRE_PREVIEW_LOGO_PATCH_V1 */
+.v8-discord-preview .v8-avatar {
+  width:40px; height:40px; min-width:40px; flex:0 0 40px;
+  border-radius:50%; overflow:hidden; display:flex;
+  justify-content:center; align-items:center;
+  background:#050507; box-shadow:0 0 0 1px rgba(225,35,55,.36);
+}
+.v8-discord-preview .v8-avatar img {
+  display:block; width:100%; height:100%;
+  object-fit:cover; object-position:50% 50%;
+  border-radius:50%; transform:scale(1.04);
+}
+/* Keep the same SP artwork centered in the floating navigation */
+.brand-mark { overflow:hidden; border-radius:50%; }
+.brand-mark img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; border-radius:50%; }
