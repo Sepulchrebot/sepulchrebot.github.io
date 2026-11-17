@@ -35,3 +35,27 @@ html{scroll-padding-top:85px}body,body:has(.v8-home){background:#070709!importan
 /* Keep the same SP artwork centered in the floating navigation */
 .brand-mark { overflow:hidden; border-radius:50%; }
 .brand-mark img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; border-radius:50%; }
+/* SEPULCHRE_FIXED_FLOATING_NAV_V1: stays visible during scrolling on all pages */
+.site-header {
+  position: fixed !important;
+  top: 8px !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+}
+.site-header .pill-nav {
+  pointer-events: auto !important;
+}
+/* Reserve space now that the header is removed from document flow. */
+body {
+  padding-top: 66px !important;
+}
+html {
+  scroll-padding-top: 90px !important;
+}
+@media (max-width: 760px) {
+  .site-header { top: 6px !important; padding-inline: 8px !important; }
+  body { padding-top: 65px !important; }
+}
