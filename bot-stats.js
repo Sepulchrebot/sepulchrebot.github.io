@@ -19,7 +19,7 @@
       servers.textContent = formatter.format(stats.servers);
       members.textContent = Number.isSafeInteger(stats.members_total) && stats.members_total >= 0
         ? formatter.format(stats.members_total) : '—';
-      note.textContent = stats.members_total == null ? 'Server counts refreshed · Member totals unavailable' : 'Updated from Discord · Totals may include members in multiple servers';
+      note.textContent = stats.members_total == null ? 'Server counts refreshed · Member totals unavailable' : '';
     } catch (_) {
       servers.textContent = '—';
       members.textContent = '—';
