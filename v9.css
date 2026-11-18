@@ -19,3 +19,9 @@ html{scroll-padding-top:85px}body,body:has(.v8-home){background:#070709!importan
 @media(max-width:760px){.pill-nav.pill-nav-compact{max-width:100%!important}.v9-hero{min-height:520px;padding:95px 12px 60px!important}.v9-hero h1{font-size:clamp(48px,11vw,75px)}.v9-section-head{display:block}.v9-section-head>p{max-width:580px}.v9-duo{display:block;padding:48px 0}.v9-duo-links{margin-top:25px}.v9-purchase-band{padding:34px 24px;display:block;margin-top:50px}.v9-price{margin-top:30px}.v9-final{padding-bottom:85px}}
 @media(max-width:480px){.v9-grid{grid-template-columns:1fr}.v9-feature{min-height:185px}.v9-hero-actions{width:100%}.v9-button{justify-content:center}.v9-intro{font-size:14px}.v9-hero-meta{font-size:8px;letter-spacing:.08em}.v9-price strong{font-size:69px}}
 @media(prefers-reduced-motion:reduce){.nav-btn.purchase:before{animation:none!important}}
+
+/* Website stats: matches the existing void-red / silver theme. */
+.sepulchre-stats{text-align:center;padding:16px 16px 25px;color:#aaa4a9}
+.sepulchre-stats p{margin:0;font-size:clamp(14px,2vw,18px);line-height:1.7}
+.sepulchre-stats strong{color:#f5f1f3;font-weight:750;font-variant-numeric:tabular-nums}
+.sepulchre-stats small{display:block;margin-top:4px;font-size:11px;color:#807b80}
