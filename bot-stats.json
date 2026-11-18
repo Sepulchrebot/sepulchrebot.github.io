@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "application_id": "1562563131580878969",
+  "servers": 2,
+  "members_total": 16,
+  "updated_at": "2026-11-18T17:42:48Z",
+  "definition": "members_total sums guild member counts; not unique users"
+}
