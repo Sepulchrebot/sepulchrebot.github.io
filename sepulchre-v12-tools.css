@@ -1,0 +1,28 @@
+/* Sepulchre v12: targeted Command Explorer and Embed Studio additions. */
+.s12-command-tools,.s12-embed-tools{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:15px 0 9px}
+.s12-command-tools>*,.s12-embed-tools>*{flex-shrink:0}
+.s12-soft-btn,.s12-saved-box>summary{appearance:none;background:linear-gradient(145deg,rgba(27,22,29,.95),rgba(16,14,17,.95));border:1px solid rgba(231,91,113,.23);border-radius:999px;padding:10px 16px;font:inherit;font-size:.83rem;font-weight:620;color:#f6e9ed;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.s12-soft-btn:hover,.s12-saved-box>summary:hover{border-color:rgba(245,72,102,.74);box-shadow:0 0 22px rgba(188,25,58,.16);transform:translateY(-1px)}
+.s12-soft-btn:disabled{opacity:.35;cursor:not-allowed;box-shadow:none;transform:none}
+.s12-saved-box{position:relative;z-index:12}
+.s12-saved-box>summary{display:list-item;list-style-position:inside}
+.s12-saved-list{position:absolute;z-index:15;min-width:min(360px,85vw);max-height:330px;overflow-y:auto;right:0;top:calc(100% + 6px);background:#100e13;border:1px solid rgba(218,51,80,.4);box-shadow:0 20px 48px rgba(0,0,0,.5);border-radius:16px;padding:12px}
+.s12-saved-row{display:flex;align-items:center;gap:8px;padding:4px 0}
+.s12-saved-jump,.s12-saved-remove{background:transparent;border:0;color:#f5edf0;cursor:pointer;padding:9px;text-align:left;font:inherit;font-size:.84rem}
+.s12-saved-jump{flex:1;overflow-wrap:anywhere}.s12-saved-jump:hover{color:#ff6985}
+.s12-saved-remove{font-size:1.2rem;color:#c8aeb8}.s12-saved-remove:hover{color:#fff}
+.s12-saved-empty,.s12-local-note,.s12-commands-note{font-size:.79rem;color:#ada3aa;line-height:1.55}
+.s12-commands-note{margin:2px 0 20px}.s12-local-note{margin:1px 0 12px}
+.s12-save-command{background:transparent;border:1px solid rgba(225,98,118,.24);width:32px;height:32px;border-radius:10px;color:#d8acb6;font-size:20px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.s12-save-command:hover,.s12-save-command[aria-pressed="true"]{color:#ff5978;background:rgba(219,38,70,.13)}
+.s12-status{font-size:.77rem;color:#d2b4be;max-width:100%;white-space:normal}
+.s12-embed-label{color:#d9c8cf;font-size:.8rem;font-weight:650;letter-spacing:.035em}
+.s12-color-palette{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
+.s12-swatch{appearance:none;width:26px;height:26px;background:var(--swatch);border:2px solid rgba(255,255,255,.2);border-radius:50%;cursor:pointer;box-shadow:0 2px 7px rgba(0,0,0,.24);transition:transform .2s,border-color .2s}
+.s12-swatch:hover{transform:scale(1.12);border-color:#fff}
+.s12-embed-check{font-size:.78rem;line-height:1.6;border:1px solid rgba(217,82,107,.19);background:rgba(255,255,255,.025);border-radius:12px;color:#d9c7ce;padding:10px 12px;margin:10px 0 14px}
+.s12-embed-check.s12-has-error{border-color:rgba(255,127,89,.5);color:#ffcbbe}
+.s12-soft-btn:focus-visible,.s12-saved-jump:focus-visible,.s12-saved-remove:focus-visible,.s12-save-command:focus-visible,.s12-swatch:focus-visible,.s12-saved-box>summary:focus-visible{outline:2px solid #ff4b6d;outline-offset:3px}
+@media(max-width:650px){.s12-command-tools,.s12-embed-tools{align-items:flex-start}.s12-saved-list{left:0;right:auto;max-width:calc(100vw - 46px)}.s12-status{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.s12-soft-btn,.s12-saved-box>summary,.s12-save-command,.s12-swatch{transition:none!important;transform:none!important}}
+body.s11-motion-off .s12-soft-btn,body.s11-motion-off .s12-saved-box>summary,body.s11-motion-off .s12-save-command,body.s11-motion-off .s12-swatch{transition:none!important;transform:none!important}
