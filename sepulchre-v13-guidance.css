@@ -1,0 +1,31 @@
+/* Sepulchre v13: documentation, FAQ, and purchase clarity. Website-only. */
+.s13-doc-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:14px 0 0;color:#b7adb5;font-size:.88rem}
+.s13-doc-clear{font:inherit;font-size:.82rem;border:1px solid rgba(255,255,255,.18);color:#ebe2e7;background:#191519;border-radius:999px;padding:8px 14px;cursor:pointer;transition:border-color .2s,background .2s}
+.s13-doc-clear:hover,.s13-doc-clear:focus-visible{border-color:rgba(237,59,90,.65);background:#26141b}
+.s13-doc-empty{margin:20px 0 10px;padding:24px;border:1px dashed rgba(231,68,90,.25);border-radius:18px;text-align:center;color:#c5b9c0;background:rgba(32,11,18,.25)}
+.s13-guide-toc{padding:17px 19px;margin:0 0 22px;border:1px solid rgba(255,255,255,.10);border-radius:20px;background:linear-gradient(110deg,rgba(68,13,26,.26),rgba(15,13,17,.75))}
+.s13-toc-heading{display:flex;gap:9px;align-items:center;font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:#f1afbb;font-weight:700;margin-bottom:10px}
+.s13-toc-links{display:flex;align-items:center;flex-wrap:wrap;gap:9px}
+.s13-toc-links a{display:inline-flex;align-items:center;min-height:36px;padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#e9dfe5;background:rgba(255,255,255,.025);font-size:.87rem;text-decoration:none;transition:border-color .2s,background .2s}
+.s13-toc-links a:hover,.s13-toc-links a:focus-visible{border-color:rgba(239,71,99,.65);background:rgba(124,17,40,.23)}
+.s13-guide-anchor{display:inline-block;margin-left:10px;padding:2px 6px;font-size:.8em;text-decoration:none;color:#d85773;opacity:.7;border-radius:6px}
+.s13-guide-anchor:hover,.s13-guide-anchor:focus-visible{opacity:1;color:#ff7895;background:rgba(246,67,93,.12)}
+.v10-guide-step h2[id]{scroll-margin-top:120px}
+.s13-faq-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 20px}
+.s13-faq-chip{font:inherit;cursor:pointer;color:#e4d6dd;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.12);padding:9px 13px;border-radius:999px;font-size:.87rem;transition:color .2s,border-color .2s,background .2s}
+.s13-faq-chip:hover,.s13-faq-chip:focus-visible{border-color:rgba(242,72,103,.65)}
+.s13-faq-chip[aria-pressed="true"]{color:#fff;background:rgba(161,28,54,.33);border-color:rgba(245,73,101,.7)}
+.s13-purchase-steps{padding-block:42px 25px}
+.s13-purchase-head{font-size:.77rem;font-weight:700;color:#ff9fb2;letter-spacing:.13em;text-transform:uppercase;margin:0 0 12px}
+.s13-purchase-title{font-size:clamp(1.65rem,3vw,2.25rem);font-weight:750;letter-spacing:-.04em;margin:0 0 20px;color:#f4eff2}
+.s13-purchase-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.s13-purchase-grid li{position:relative;background:linear-gradient(145deg,rgba(83,12,30,.22),rgba(16,15,18,.88));border:1px solid rgba(255,255,255,.11);border-radius:21px;padding:21px;min-width:0}
+.s13-step-index{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:rgba(238,45,77,.16);border:1px solid rgba(238,45,77,.36);color:#ffa8b8;font-size:.86rem;font-weight:700;margin:0 0 12px}
+.s13-purchase-grid h3{color:#fff;font-weight:700;font-size:1.05rem;margin:0 0 8px}
+.s13-purchase-grid p{color:#cabec5;font-size:.89rem;line-height:1.6;margin:0}
+.s13-purchase-grid a{color:#ffa5b5;text-underline-offset:3px}
+.s13-purchase-note{color:#aaa0a7;font-size:.83rem;margin:16px 0 0}
+.s13-doc-empty[hidden], .s13-doc-clear[hidden]{display:none!important}
+@media (max-width:760px){.s13-purchase-grid{grid-template-columns:1fr}.s13-purchase-steps{padding-block:28px 18px}.s13-guide-toc{padding:14px}.s13-toc-links{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.s13-toc-links a{flex:none}.s13-faq-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.s13-faq-chip{white-space:nowrap}}
+@media (prefers-reduced-motion:reduce){.s13-doc-clear,.s13-toc-links a,.s13-faq-chip{transition:none}}
+body.s11-motion-off .s13-doc-clear,body.s11-motion-off .s13-toc-links a,body.s11-motion-off .s13-faq-chip{transition:none}
