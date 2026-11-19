@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sepulchrebot.github.io/sitemap.xml
