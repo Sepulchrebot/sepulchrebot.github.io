@@ -1,4 +1,4 @@
-/* Sepulchre reach v3: standalone, SPA-safe, no credentials, no changes to site templates. */
+/* Sepulchre reach v4: text-only, standalone, SPA-safe; verified external JSON. */
 (() => {
   'use strict';
   const BOT_ID = '1562563131580878969';
@@ -16,11 +16,9 @@
     el.className = 'sepulchre-live-reach';
     el.setAttribute('data-sepulchre-stats', '');
     el.dataset.reachState = 'loading';
-    el.setAttribute('aria-label', 'Verified Sepulchre community statistics');
-    el.innerHTML = '<span class="sepulchre-reach-led" aria-hidden="true"></span>' +
-      '<span class="sepulchre-reach-line">Powering <strong data-stat-members>—</strong> members across ' +
-      '<strong data-stat-servers>—</strong> communities</span>' +
-      '<span class="sepulchre-reach-status" data-stat-status role="status" aria-live="polite">Loading verified Discord statistics…</span>';
+    el.innerHTML = '<span class="sepulchre-reach-line" role="status" aria-live="polite">' +
+      'Powering <strong data-stat-members>—</strong> members across ' +
+      '<strong data-stat-servers>—</strong> communities</span>';
     return el;
   }
 
@@ -47,7 +45,6 @@
   function renderUnavailable(el) {
     el.querySelector('[data-stat-members]').textContent = '—';
     el.querySelector('[data-stat-servers]').textContent = '—';
-    el.querySelector('[data-stat-status]').textContent = 'Verified community statistics temporarily unavailable';
     el.dataset.reachState = 'unavailable';
   }
 
@@ -73,10 +70,6 @@
       el.querySelector('[data-stat-servers]').textContent = number.format(data.servers);
       el.querySelector('[data-stat-members]').textContent = data.members_total === null ? '—' : number.format(data.members_total);
       el.dataset.reachState = 'live';
-      const minutes = Math.max(0, Math.floor(age / 60000));
-      el.querySelector('[data-stat-status]').textContent = data.members_total === null
-        ? 'Verified communities · Member total unavailable'
-        : `Verified Discord totals · ${minutes < 1 ? 'Updated just now' : `Updated ${minutes} min ago`} · Memberships may overlap`;
     } catch (_error) {
       if (el === mounted && id === request && el.isConnected) renderUnavailable(el);
     }
