@@ -630,23 +630,27 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!raf&&wdr
 
 /* background fx: mouse slash, embers, slash echoes */
 function initFx(){const cv=$('#fx');if(!cv)return;
-const cx=cv.getContext('2d');let W,H,dpr,run=1,last=0,E=[],SL=null,nextSl=3500,t0=performance.now(),TR=[];
+const cx=cv.getContext('2d');let W,H,dpr,run=1,last=0,E=[],SL=null,nextSl=3500,t0=performance.now(),TR=[],tx=0,ty=0,hx=-999,hy=-999;
 const size=()=>{dpr=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)};size();addEventListener('resize',size);
-addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const l=TR[TR.length-1];if(l&&Math.hypot(e.clientX-l.x,e.clientY-l.y)<3)return;TR.push({x:e.clientX,y:e.clientY,t:performance.now()});if(TR.length>40)TR.shift()},{passive:true});
+addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;tx=e.clientX;ty=e.clientY;if(hx<-900){hx=tx;hy=ty}},{passive:true});
 document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run){last=0;requestAnimationFrame(fr)}});
+const SP=document.createElement('canvas');SP.width=SP.height=64;{const c=SP.getContext('2d'),g=c.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(255,120,135,1)');g.addColorStop(.3,'rgba(255,60,85,.35)');g.addColorStop(1,'rgba(255,40,70,0)');c.fillStyle=g;c.fillRect(0,0,64,64)}
 const ember=()=>({x:Math.random()*W,y:H+10,vy:14+Math.random()*26,sw:Math.random()*6.28,sa:6+Math.random()*14,r:1.1+Math.random()*1.7,life:0,max:7+Math.random()*7,a:.55+Math.random()*.45});
-const fr=ts=>{if(!run)return;requestAnimationFrame(fr);if(ts-last<33)return;const dt=Math.min(.1,(ts-last)/1000||.033);last=ts;const T=ts-t0;cx.clearRect(0,0,W,H);
-/* mouse slash trail */
-const now=performance.now();while(TR.length&&now-TR[0].t>380)TR.shift();
-if(TR.length>2){const n=TR.length;for(let k=1;k<n;k++){const p0=TR[k-1],p1=TR[k],age=(now-p1.t)/380,f=Math.max(0,1-age),h=k/n,w=Math.max(.3,h*1.9);cx.lineCap='round';cx.beginPath();cx.moveTo(p0.x,p0.y);cx.lineTo(p1.x,p1.y);
-cx.strokeStyle=`rgba(255,30,60,${.16*f*h})`;cx.lineWidth=w*7;cx.stroke();cx.strokeStyle=`rgba(255,80,105,${.55*f*h})`;cx.lineWidth=w*2.4;cx.stroke();cx.strokeStyle=`rgba(255,238,240,${.95*f})`;cx.lineWidth=w;cx.stroke()}}
+const fr=ts=>{if(!run)return;requestAnimationFrame(fr);const act=TR.length>1;if(!act&&ts-last<33)return;const dt=Math.min(.1,(ts-last)/1000||.033);last=ts;const T=ts-t0;cx.clearRect(0,0,W,H);
+/* mouse slash trail: a follower chases the pointer every frame, so the trail stays dense and curved */
+const now=performance.now();if(hx>-900){const k=1-Math.exp(-dt*28);hx+=(tx-hx)*k;hy+=(ty-hy)*k;const l=TR[TR.length-1];if(!l||Math.hypot(hx-l.x,hy-l.y)>1.2){TR.push({x:hx,y:hy,t:now});if(TR.length>48)TR.shift()}}
+while(TR.length&&now-TR[0].t>420)TR.shift();
+if(TR.length>3){const n=TR.length;cx.lineCap='round';cx.lineJoin='round';
+for(let k=2;k<n;k++){const a0=TR[k-2],a1=TR[k-1],a2=TR[k],h=k/n,f=Math.max(0,1-(now-a2.t)/420),w=Math.max(.25,h*h*2.1);
+const mx0=(a0.x+a1.x)/2,my0=(a0.y+a1.y)/2,mx1=(a1.x+a2.x)/2,my1=(a1.y+a2.y)/2;cx.beginPath();cx.moveTo(mx0,my0);cx.quadraticCurveTo(a1.x,a1.y,mx1,my1);
+cx.strokeStyle=`rgba(255,30,60,${.15*f*h})`;cx.lineWidth=w*7;cx.stroke();cx.strokeStyle=`rgba(255,80,105,${.5*f*h})`;cx.lineWidth=w*2.4;cx.stroke();cx.strokeStyle=`rgba(255,238,240,${.95*f})`;cx.lineWidth=w;cx.stroke()}}
 /* slash echo */
-if(!SL&&T>nextSl){const a=(Math.random()<.5?-1:1)*(.25+Math.random()*.7);SL={x:W*Math.random(),y:H*(.15+Math.random()*.7),a,L:Math.max(W,H)*(.6+Math.random()*.5),t:0};nextSl=T+6000+Math.random()*4000}
+if(!SL&&T>nextSl){const a=(Math.random()<.5?-1:1)*(.25+Math.random()*.7);SL={x:W*Math.random(),y:H*(.15+Math.random()*.7),a,L:Math.max(W,H)*(.6+Math.random()*.5),t:0};nextSl=T+3000+Math.random()*3000}
 if(SL){SL.t+=dt;const p=Math.min(1,SL.t/.4),e=1-Math.pow(1-p,3),f=Math.max(0,1-Math.max(0,SL.t-.4)/1.3);if(f<=0)SL=null;else{const dx=Math.cos(SL.a),dy=Math.sin(SL.a),x0=SL.x-dx*SL.L/2,y0=SL.y-dy*SL.L/2,x1=x0+dx*SL.L*e,y1=y0+dy*SL.L*e;cx.lineCap='round';cx.beginPath();cx.moveTo(x0,y0);cx.lineTo(x1,y1);cx.strokeStyle=`rgba(255,40,70,${.14*f})`;cx.lineWidth=8;cx.stroke();cx.strokeStyle=`rgba(255,200,208,${.7*f})`;cx.lineWidth=1.4;cx.stroke()}}
 /* embers */
 if(E.length<48&&Math.random()<dt*7)E.push(ember());
 for(let i=E.length-1;i>=0;i--){const e=E[i];e.life+=dt;e.y-=e.vy*dt;e.sw+=dt*.9;const x=e.x+Math.sin(e.sw)*e.sa;if(e.life>e.max||e.y<-10){E.splice(i,1);continue}const q=e.life/e.max,al=e.a*Math.min(1,e.life/1.2)*(1-q*q);
-const g=cx.createRadialGradient(x,e.y,0,x,e.y,e.r*5);g.addColorStop(0,`rgba(255,110,125,${al})`);g.addColorStop(.3,`rgba(255,60,85,${al*.35})`);g.addColorStop(1,'rgba(255,40,70,0)');cx.fillStyle=g;cx.fillRect(x-e.r*5,e.y-e.r*5,e.r*10,e.r*10)}};
+cx.globalAlpha=al;cx.drawImage(SP,x-e.r*5,e.y-e.r*5,e.r*10,e.r*10)}cx.globalAlpha=1};
 requestAnimationFrame(fr)}
 addEventListener('hashchange',()=>{document.body.classList.remove('mqp');route();reveal()});onScroll();route();initDots();intro().then(()=>{initFx();reveal();requestAnimationFrame(()=>mvhl($('a.on',its)))});
 
