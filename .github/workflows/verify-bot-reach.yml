@@ -1,0 +1,19 @@
+name: Verify Sepulchre permanent counter
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  counter-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify counter integration survives homepage edits
+        run: python3 .github/scripts/check_bot_reach_integrity.py
