@@ -526,7 +526,7 @@ if(G.left>0&&ts>G.spawn){spawnEn();G.left--;G.spawn=ts+Math.max(350,1100-G.wave*
 for(const s of G.sh){s.x+=s.vx*dt;s.y+=s.vy*dt;s.l-=dt}G.sh=G.sh.filter(s=>s.l>0&&s.x>-30&&s.x<W+30&&s.y>-30&&s.y<H+30);
 const frozen=ts<G.frz;
 for(const e of G.en){if(!frozen){e.x+=e.vx*dt;e.y+=e.vy*dt}e.rot+=e.sp*dt;e.dead=0;
- if(Math.hypot(e.x-g.x,e.y-g.y)<g.Rb+e.r*.5){e.dead=1;burst(e.x,e.y,10);bump(g.x,g.y,170,7);if(G.shield>0)G.shield--;else G.hp--;if(G.hp<=0){G.st='over';fire=0;if(G.score>G.best){G.best=G.score;try{localStorage.setItem('sepbest',G.best)}catch(er){}}burst(g.x,g.y,90);bump(g.x,g.y,400,14);hintSet()}}}
+ if(Math.hypot(e.x-g.x,e.y-g.y)<g.Rb+e.r*.5){e.dead=1;burst(e.x,e.y,10);bump(g.x,g.y,170,7);if(G.shield>0)G.shield--;else G.hp--;if(G.hp<=0){G.st='over';G.overT=ts;fire=0;if(G.score>G.best){G.best=G.score;try{localStorage.setItem('sepbest',G.best)}catch(er){}}burst(g.x,g.y,90);bump(g.x,g.y,400,14);hintSet()}}}
 for(const s of G.sh){if(s.l<=0)continue;for(const e of G.en){if(e.dead)continue;if(Math.hypot(e.x-s.x,e.y-s.y)<e.r+4){s.l=0;e.hp--;if(e.hp<=0){e.dead=1;kill(e,ts,s.vx,s.vy)}else{e.fl=ts+90;burst(s.x,s.y,5)}break}}}
 G.en=G.en.filter(e=>!e.dead&&e.x>-90&&e.x<W+90&&e.y>-90&&e.y<H+90);
 for(const p of G.pk){p.x+=p.vx*dt;p.y+=p.vy*dt;let got=Math.hypot(p.x-sx,p.y-sy)<28;for(const s of G.sh)if(Math.hypot(p.x-s.x,p.y-s.y)<24){got=true;s.l=0}
@@ -549,7 +549,7 @@ cx.font='600 13px '+MONO;cx.fillStyle='rgba(255,217,223,.9)';cx.fillText('Action
 for(let i=0;i<5;i++){cx.fillStyle=i<G.hp?'rgba(255,90,115,.95)':'rgba(255,255,255,.14)';cx.fillRect(g.x-27+i*11,g.y+g.Rb*1.55,8,5)}
 if(G.st==='play'&&ts<G.banner){cx.textAlign='center';cx.font='800 26px '+SANS;cx.fillStyle='rgba(255,255,255,.9)';cx.fillText('Wave '+G.wave,W/2,H*.2);cx.textAlign='start'}
 if(G.st==='ready')panel('Raid','Protect the sigil. Move to aim, hold to slash. Click to start.');
-else if(G.st==='over')panel('Server lost','Actions handled '+G.score+' · Best '+G.best+'. Click to defend again.');
+else if(G.st==='over'){const f=Math.max(0,Math.min(1,(ts-G.overT-500)/2200));cx.fillStyle=`rgba(5,2,4,${f*.5})`;cx.fillRect(0,0,W,H);cx.globalAlpha=f;panel('You returned to Sepulchre','Actions handled '+G.score+' · Best '+G.best+'. Click to defend again.');cx.globalAlpha=1}
 else if(!act){cx.textAlign='center';cx.font='600 13px '+SANS;cx.fillStyle='rgba(255,217,223,.85)';cx.fillText('Paused. Move your cursor back to continue.',W/2,H-22);cx.textAlign='start'}
 cx.textBaseline='alphabetic'};
 const gFrame=ts=>{const dt=Math.min(3,(ts-lastG)/16.667||1);lastG=ts;if(G.st==='play'&&act)gUpdate(ts,dt);gDraw(ts)};
