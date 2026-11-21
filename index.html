@@ -517,7 +517,7 @@ let scrl=0,sT=0,lastD=0;addEventListener('scroll',()=>{scrl=1;clearTimeout(sT);s
 /* Raid: asteroid shooter built on the dot logo */
 let fire=0,lastG=0;const G={st:'ready',score:0,wave:1,hp:5,shield:0,ang:0,en:[],sh:[],pk:[],spawn:0,left:0,frz:0,banner:0,best:0,fireT:0};try{G.best=+localStorage.getItem('sepbest')||0}catch(e){}
 const SANS='"Plus Jakarta Sans",system-ui,sans-serif',MONO='ui-monospace,SFMono-Regular,Menlo,monospace',SZR=[34,21,12],SZS=[40,20,10];
-const geo=()=>{const Rb=Math.min(H*.14,54);return{x:W/2,y:H/2,Ro:Rb*1.75,Rb}};
+const geo=()=>{const Rb=Math.min(H*.14,54);return{x:W/2,y:H/2,Ro:Rb*1.4,Rb}};
 const bump=(x,y,r,s)=>{for(const d of dots){const ex=d.x-x,ey=d.y-y,q=Math.hypot(ex,ey);if(q<r){const f=(1-q/r)*s;d.vx+=ex/(q||1)*f;d.vy+=ey/(q||1)*f}}};
 const mkEn=(sz,x,y,vx,vy)=>{const pts=[];for(let i=0;i<9;i++)pts.push(.74+Math.random()*.4);const w=sz===0?CMDS[Math.random()*CMDS.length|0][2].split(' ')[0]:'';return{sz,x,y,vx,vy,r:SZR[sz],hp:sz===0?2:1,pts,rot:Math.random()*6.28,sp:(Math.random()-.5)*.04,lb:w,fl:0}};
 const hintSet=()=>{if(mode!=='raid')return;if(G.st==='over')hint.innerHTML=`Score ${G.score} · Best ${G.best}. <a href="${SUP}" target="_blank" rel="noopener" style="color:#ffd9df;text-decoration:underline">Post it in our Discord ↗</a>`;else hint.textContent=MD.raid.h};
@@ -600,8 +600,8 @@ $$('#app '+RV).forEach(el=>{if(el.parentElement.closest('.rvl')||el.closest('.mq
 function intro(){return new Promise(res=>{const root=document.documentElement,el=$('#intro');const fin=()=>{root.classList.remove('intro');res()};
 if(!el){fin();return}const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const cv=$('#ic'),cx=cv.getContext('2d'),il=$('#il');il.src=LOGO;let W=innerWidth,H=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
-const D=Math.hypot(W,H),sl=[];for(let i=0;i<28;i++){const a=(Math.random()<.5?-1:1)*(.12+Math.random()*1.25)+(Math.random()<.3?Math.PI/2:0);sl.push({x:Math.random()*W,y:Math.random()*H,a,len:D*(.3+Math.random()*.6),t0:.2+i*.062+Math.random()*.05,dur:.22+Math.random()*.16,w:.6+Math.random()*1.6})}
-const TX=2.1,big=[{a:-.66},{a:.66}];let st=0,done=0,logo=0,fl=0;
+const D=Math.hypot(W,H),sl=[];for(let i=0;i<40;i++){const a=(Math.random()<.5?-1:1)*(.12+Math.random()*1.25)+(Math.random()<.3?Math.PI/2:0);sl.push({x:Math.random()*W,y:Math.random()*H,a,len:D*(.3+Math.random()*.6),t0:.15+i*.033+Math.random()*.03,dur:.16+Math.random()*.12,w:.6+Math.random()*1.6})}
+const TX=1.65,big=[{a:-.66},{a:.66}];let st=0,done=0,logo=0,fl=0;
 const line=(x,y,a,len,p,w,al)=>{const dx=Math.cos(a),dy=Math.sin(a),x1=x+dx*len*p,y1=y+dy*len*p;cx.lineCap='round';
 cx.beginPath();cx.moveTo(x,y);cx.lineTo(x1,y1);cx.strokeStyle=`rgba(255,30,60,${.12*al})`;cx.lineWidth=w*6;cx.stroke();
 cx.strokeStyle=`rgba(255,70,95,${.5*al})`;cx.lineWidth=w*2.2;cx.stroke();
@@ -609,7 +609,7 @@ cx.strokeStyle=`rgba(255,238,240,${.95*al})`;cx.lineWidth=w;cx.stroke()};
 const end=()=>{if(done)return;done=1;il.classList.add('on');el.classList.add('out');root.classList.remove('intro');res();setTimeout(()=>el.remove(),780)};
 ['pointerdown','keydown'].forEach(e=>addEventListener(e,()=>{if(!done&&st>.3)end()},{once:true}));
 const f=ts=>{if(!st)st=ts;const t=(ts-st)/1000;cx.clearRect(0,0,W,H);
-const hz=Math.max(0,Math.min(1,t/1.6))*.22*(t>TX+.5?Math.max(0,1-(t-TX-.5)/.9):1);const g=cx.createRadialGradient(W/2,H/2,0,W/2,H/2,D*.55);g.addColorStop(0,`rgba(90,0,14,${hz})`);g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.fillRect(0,0,W,H);
+const hz=Math.max(0,Math.min(1,t/1.3))*.22*(t>TX+.5?Math.max(0,1-(t-TX-.5)/.9):1);const g=cx.createRadialGradient(W/2,H/2,0,W/2,H/2,D*.55);g.addColorStop(0,`rgba(90,0,14,${hz})`);g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.fillRect(0,0,W,H);
 cx.globalCompositeOperation='lighter';
 for(const s of sl){const p=(t-s.t0)/s.dur;if(p<0)continue;const q=Math.min(1,1-Math.pow(1-Math.min(1,p),3)),fade=Math.max(0,1-Math.max(0,t-s.t0-s.dur)/(TX+.55-s.t0-s.dur+.2));if(fade>0)line(s.x,s.y,s.a,s.len,q,s.w,fade*.9)}
 if(t>TX){const p=Math.min(1,(t-TX)/.16),fa=Math.max(0,1-(t-TX-.25)/.55);if(fa>0)for(const b of big){const a=b.a,L=D*1.25;line(W/2-Math.cos(a)*L/2,H/2-Math.sin(a)*L/2,a,L,1-Math.pow(1-p,3),2.6,fa)}
