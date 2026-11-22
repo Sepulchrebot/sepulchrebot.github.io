@@ -360,7 +360,6 @@ html.intro #app,html.intro .nv{opacity:0;animation:none!important}
 .sgw{display:block;transform-style:preserve-3d;will-change:transform}
 .mgx{transition:translate .35s cubic-bezier(.22,1.2,.36,1)}
 #pt{position:fixed;top:0;bottom:0;left:-20vw;width:140vw;z-index:250;pointer-events:none;background:#050304;transform:translateX(-135%) skewX(-16deg);border-left:2px solid rgba(255,235,238,.9);border-right:2px solid rgba(255,235,238,.9);box-shadow:0 0 34px 6px rgba(255,40,80,.55),0 0 90px 20px rgba(200,20,60,.25),inset 0 0 160px rgba(120,10,35,.35)}
-html.hcur,html.hcur *{cursor:none!important}html.hcur.cx,html.hcur.cx input,html.hcur.cx textarea,html.hcur.cx [contenteditable]{cursor:text!important}
 #cd,#cr{position:fixed;left:0;top:0;pointer-events:none;z-index:500;opacity:0;transition:opacity .25s;will-change:transform}
 #cd:before{content:"";position:absolute;border-radius:50%}
 #cr i{position:absolute;width:34px;height:34px;left:-17px;top:-17px;border-radius:50%;border:1px solid rgba(255,120,140,.55);transition:transform .25s cubic-bezier(.22,1,.36,1),background-color .25s,border-color .25s}
@@ -655,7 +654,7 @@ const SP=document.createElement('canvas');SP.width=SP.height=64;{const c=SP.getC
 const ember=()=>({x:Math.random()*W,y:H+10,vy:14+Math.random()*26,sw:Math.random()*6.28,sa:6+Math.random()*14,r:1.1+Math.random()*1.7,life:0,max:7+Math.random()*7,a:.55+Math.random()*.45});
 const fr=ts=>{if(!run)return;requestAnimationFrame(fr);const act=TR.length>1;if(!act&&ts-last<33)return;const dt=Math.min(.1,(ts-last)/1000||.033);last=ts;const T=ts-t0;cx.clearRect(0,0,W,H);
 /* mouse slash trail: a follower chases the pointer every frame, so the trail stays dense and curved */
-const now=performance.now();if(hx>-900){const k=1-Math.exp(-dt*28);hx+=(tx-hx)*k;hy+=(ty-hy)*k;const l=TR[TR.length-1];if(!l||Math.hypot(hx-l.x,hy-l.y)>1.2){TR.push({x:hx,y:hy,t:now});if(TR.length>26)TR.shift()}}
+const now=performance.now();if(hx>-900){const k=1-Math.exp(-dt*90);hx+=(tx-hx)*k;hy+=(ty-hy)*k;const l=TR[TR.length-1];if(!l||Math.hypot(hx-l.x,hy-l.y)>1.2){TR.push({x:hx,y:hy,t:now});if(TR.length>26)TR.shift()}}
 while(TR.length&&now-TR[0].t>420)TR.shift();
 if(TR.length>3){const n=TR.length;cx.lineCap='round';cx.lineJoin='round';
 for(let k=2;k<n;k++){const a0=TR[k-2],a1=TR[k-1],a2=TR[k],h=k/n,f=Math.max(0,1-(now-a2.t)/420),w=Math.max(.25,h*h*2.1);
@@ -681,11 +680,11 @@ document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey
 if(!fine)return;
 /* one coalesced pointer pipeline: cursor, magnetic buttons, sigil tilt (reads first, writes after, once per frame) */
 const MG='.bp,.bw,.bn>a',HOT='a,button,summary,label,select,.card,.cc,[role=button],.qa,.bw,.bp,#bar';
-const dot=document.createElement('div'),ring=document.createElement('div'),rin=document.createElement('i');dot.id='cd';ring.id='cr';ring.appendChild(rin);document.body.append(ring,dot);document.documentElement.classList.add('hcur');
+const dot=document.createElement('div'),ring=document.createElement('div'),rin=document.createElement('i');dot.id='cd';ring.id='cr';ring.appendChild(rin);document.body.append(ring);
 let px=-99,py=-99,rx=-99,ry=-99,pe=null,pq=0,vis=0,cr=0,tr=0,mr=[],dirty=1,mset=new Set(),tx=0,ty=0,cx2=0,cy2=0,lastHot=0,lastTxt=0;
 const rebuild=()=>{dirty=0;mr=[];for(const el of $$(MG)){const r=el.getBoundingClientRect();if(r.bottom<-60||r.top>innerHeight+60)continue;mr.push({el,x:r.left+r.width/2-(el._tx||0),y:r.top+r.height/2-(el._ty||0),hw:r.width/2+46,hh:r.height/2+46})}};
 addEventListener('scroll',()=>{dirty=1},{passive:true});addEventListener('resize',()=>{dirty=1});new MutationObserver(()=>{dirty=1}).observe($('#app'),{childList:true});
-const cl=()=>{rx+=(px-rx)*.22;ry+=(py-ry)*.22;ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;cr=(Math.abs(px-rx)+Math.abs(py-ry)>.4)?requestAnimationFrame(cl):0};
+const cl=()=>{rx+=(px-rx)*.35;ry+=(py-ry)*.35;ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;cr=(Math.abs(px-rx)+Math.abs(py-ry)>.4)?requestAnimationFrame(cl):0};
 const tilt=()=>{const w=$('.sgw');if(!w){tr=0;return}cx2+=(tx-cx2)*.12;cy2+=(ty-cy2)*.12;w.style.transform=`perspective(700px) rotateY(${cx2*16}deg) rotateX(${-cy2*12}deg)`;tr=(Math.abs(tx-cx2)+Math.abs(ty-cy2)>.003)?requestAnimationFrame(tilt):0};
 const proc=()=>{pq=0;const e=pe;if(!e)return;if(dirty)rebuild();
 const t=(e.target&&e.target.closest)?e.target:document.body,txt=!!t.closest('input,textarea,[contenteditable]'),hot=!!t.closest(HOT);
