@@ -2,7 +2,7 @@
   "schema": 1,
   "application_id": "1562563131580878969",
   "servers": 8,
-  "members_total": 1146,
-  "updated_at": "2026-11-22T15:23:08Z",
+  "members_total": 1147,
+  "updated_at": "2026-11-22T16:18:53Z",
   "definition": "members_total sums server member counts and may include duplicates across servers"
 }
