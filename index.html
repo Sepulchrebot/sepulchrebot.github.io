@@ -844,7 +844,7 @@ if(!fine)return;
 const MG='.bp,.bw,.bn>a',HOT='a,button,summary,label,select,.card,.cc,[role=button],.qa,.bw,.bp,#bar';
 const dot=document.createElement('div'),ring=document.createElement('div'),rin=document.createElement('i');dot.id='cd';ring.id='cr';ring.appendChild(rin);document.body.append(ring);
 let px=-99,py=-99,rx=-99,ry=-99,pe=null,pq=0,vis=0,cr=0,tr=0,mr=[],dirty=1,mset=new Set(),tx=0,ty=0,cx2=0,cy2=0,lastHot=0,lastTxt=0;
-const rebuild=()=>{dirty=0;mr=[];for(const el of $$(MG)){const r=el.getBoundingClientRect();if(r.bottom<-60||r.top>innerHeight+60)continue;mr.push({el,x:r.left+r.width/2-(el._tx||0),y:r.top+r.height/2-(el._ty||0),hw:r.width/2+46,hh:r.height/2+46})}};
+const rebuild=()=>{dirty=0;mr=[];for(const el of $$(MG)){const r=el.getBoundingClientRect();if(r.bottom<-60||r.top>innerHeight+60)continue;mr.push({el,x:r.left+r.width/2-(el._tx||0),y:r.top+r.height/2-(el._ty||0),hw:r.width/2+30,hh:r.height/2+30})}};
 addEventListener('scroll',()=>{dirty=1},{passive:true});addEventListener('resize',()=>{dirty=1});new MutationObserver(()=>{dirty=1}).observe($('#app'),{childList:true});
 const cl=()=>{rx+=(px-rx)*.35;ry+=(py-ry)*.35;ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;cr=(Math.abs(px-rx)+Math.abs(py-ry)>.4)?requestAnimationFrame(cl):0};
 const tilt=()=>{const w=$('.sgw');if(!w){tr=0;return}cx2+=(tx-cx2)*.12;cy2+=(ty-cy2)*.12;w.style.transform=`perspective(700px) rotateY(${cx2*16}deg) rotateX(${-cy2*12}deg)`;tr=(Math.abs(tx-cx2)+Math.abs(ty-cy2)>.003)?requestAnimationFrame(tilt):0};
@@ -853,7 +853,7 @@ const t=(e.target&&e.target.closest)?e.target:document.body,txt=!!t.closest('inp
 const hits=[];for(const m of mr){if(Math.abs(px-m.x)<m.hw&&Math.abs(py-m.y)<m.hh)hits.push(m)}
 /* writes */
 if(txt!==lastTxt){lastTxt=txt;document.documentElement.classList.toggle('cx',txt)}if(hot!==lastHot){lastHot=hot;ring.classList.toggle('hot',hot)}
-for(const m of hits){m.el._tx=Math.max(-9,Math.min(9,(px-m.x)*.22));m.el._ty=Math.max(-7,Math.min(7,(py-m.y)*.3));m.el.style.translate=m.el._tx+'px '+m.el._ty+'px';m.el.classList.add('mgx');mset.add(m.el)}
+for(const m of hits){m.el._tx=Math.max(-4,Math.min(4,(px-m.x)*.1));m.el._ty=Math.max(-3,Math.min(3,(py-m.y)*.12));m.el.style.translate=m.el._tx+'px '+m.el._ty+'px';m.el.classList.add('mgx');mset.add(m.el)}
 if(mset.size){for(const el of mset){if(!hits.some(m=>m.el===el)){el.style.translate='';el._tx=el._ty=0;mset.delete(el)}}}
 tx=(px/innerWidth-.5)*2;ty=(py/innerHeight-.5)*2;if(!tr&&$('.sgw'))tr=requestAnimationFrame(tilt);if(!cr)cr=requestAnimationFrame(cl)};
 addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;px=e.clientX;py=e.clientY;pe=e;dot.style.transform=`translate3d(${px}px,${py}px,0)`;if(!vis){vis=1;rx=px;ry=py;dot.style.opacity=ring.style.opacity=1}if(!pq)pq=requestAnimationFrame(proc)},{passive:true});
