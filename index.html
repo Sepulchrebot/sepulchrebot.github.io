@@ -512,6 +512,31 @@ html.rm .cc.sk i{animation:none}
 .pmw .pmc .stk .pb{--s:30px}
 .pmw small{margin-top:22px}
 .k .pmr{gap:10px;margin-top:12px}.k .pmr>.pb{--s:32px;box-shadow:0 4px 12px rgba(0,0,0,.45)}.k .pmr .stk .pb{--s:30px}
+
+/* background options + payment orbit + pill scan */
+html[data-bg=aurora] .amb{animation:none;opacity:1}
+html[data-bg=aurora] .amb:before{left:-20vw;top:6vh;width:140vw;height:38vh;margin-left:0;border-radius:50%;filter:blur(70px);background:linear-gradient(90deg,transparent,rgba(255,50,95,.5) 30%,rgba(190,30,130,.42) 60%,transparent);animation:aurA 38s ease-in-out infinite alternate}
+html[data-bg=aurora] .amb:after{left:-10vw;right:auto;top:38vh;bottom:auto;width:130vw;height:34vh;border-radius:50%;filter:blur(80px);background:linear-gradient(90deg,transparent,rgba(120,30,200,.34) 35%,rgba(255,60,100,.38) 70%,transparent);animation:aurB 52s ease-in-out infinite alternate}
+html[data-bg=aurora] .amb i{left:10vw;bottom:-6vh;width:110vw;height:30vh;filter:blur(74px);background:linear-gradient(90deg,transparent,rgba(255,90,120,.3) 40%,rgba(200,40,90,.34) 65%,transparent);animation:aurC 64s ease-in-out infinite alternate}
+@keyframes aurA{from{transform:translate3d(-8vw,-4vh,0) rotate(-6deg) scaleY(.9);opacity:.7}to{transform:translate3d(10vw,8vh,0) rotate(7deg) scaleY(1.25);opacity:1}}
+@keyframes aurB{from{transform:translate3d(8vw,6vh,0) rotate(5deg) scaleY(1.15);opacity:.9}to{transform:translate3d(-10vw,-6vh,0) rotate(-8deg) scaleY(.85);opacity:.6}}
+@keyframes aurC{from{transform:translate3d(-6vw,2vh,0) rotate(3deg);opacity:.5}to{transform:translate3d(8vw,-8vh,0) rotate(-5deg) scaleY(1.2);opacity:.95}}
+html[data-bg=heart] .amb{animation:hbo 3.4s ease-in-out infinite}
+html[data-bg=heart] .amb:before{animation:hbs 3.4s ease-in-out infinite}
+html[data-bg=heart] .amb:after{animation:hbs 3.4s ease-in-out infinite .08s}
+html[data-bg=heart] .amb i{animation:hbs 3.4s ease-in-out infinite .16s}
+@keyframes hbo{0%{opacity:.42}9%{opacity:1}18%{opacity:.58}29%{opacity:.92}46%,100%{opacity:.42}}
+@keyframes hbs{0%{transform:scale(.9)}9%{transform:scale(1.14)}18%{transform:scale(.98)}29%{transform:scale(1.1)}46%,100%{transform:scale(.9)}}
+.coins.orb2{-webkit-mask:none;mask:none;overflow:visible}
+.coins .cn2{position:absolute;left:0;top:0;animation:none!important;will-change:transform}
+.pmw>div{position:relative}
+.pmw>div:after{content:"";position:absolute;top:-6px;bottom:-6px;left:0;width:2px;border-radius:2px;background:linear-gradient(transparent,rgba(255,110,135,.95),transparent);box-shadow:0 0 18px 3px rgba(255,50,90,.55);opacity:0;pointer-events:none;animation:pmscanx 7s linear infinite}
+@keyframes pmscanx{0%{left:0;opacity:0}4%{opacity:.9}74%{opacity:.9}80%,100%{left:100%;opacity:0}}
+.pmw .pmc{animation:pmlit 7s linear infinite}
+.pmw .pmc:nth-child(1){animation-delay:.18s}.pmw .pmc:nth-child(2){animation-delay:1.58s}.pmw .pmc:nth-child(3){animation-delay:3.04s}.pmw .pmc:nth-child(4){animation-delay:4.44s}
+@keyframes pmlit{0%,100%{border-color:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.35)}7%{border-color:rgba(255,130,155,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 12px 34px rgba(0,0,0,.4),0 0 30px rgba(255,50,90,.3)}16%{border-color:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.35)}}
+html.rm .pmw>div:after{display:none}
+@media(max-width:860px){.pmw>div:after{display:none}}
 </style><link rel="stylesheet" href="assets/sepulchre-live-reach.css?v=4"></head><body><div id="intro" aria-hidden="true"><canvas id="ic"></canvas><img id="il" alt=""></div>
 <div class="amb"><i></i></div><canvas id="fx" aria-hidden="true"></canvas><canvas id="wv"></canvas>
 <header class="nv" id="nv"><div class="nb"><span class="nbar" id="bar"></span><a class="lg" href="#home" aria-label="Sepulchre home"><img class="lgo" alt=""></a><div class="its" id="its"></div><div class="act"><a class="bp" href="#purchase"><svg class="i" width="18" height="18" viewBox="0 0 24 24"><path d="M9 3h6l-1.4 3h-3.2z"/><path d="M10.4 6C6 9 4 12 4 15.5 4 19 6.5 21 12 21s8-2 8-5.5C20 12 18 9 13.6 6"/><path d="M12 10v8M14.2 12.2c-.5-.8-1.2-1.2-2.2-1.2-1.3 0-2.2.7-2.2 1.6s.8 1.3 2.2 1.6 2.2.7 2.2 1.6-.9 1.6-2.2 1.6c-1 0-1.8-.4-2.3-1.2"/></svg>Purchase</a><a class="bw" href="#" data-sup aria-label="Support server"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.079.01c.12.099.246.197.372.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg><span class="tx">Support</span></a></div></div></header>
@@ -521,8 +546,9 @@ html.rm .cc.sk i{animation:none}
 <div><b>Product</b><a class="l" href="#features">Features</a><a class="l" href="#commands">Commands</a><a class="l" href="#embeds">Embed Studio</a><a class="l" href="#status">Status</a><a class="l" href="#faq">FAQ</a></div>
 <div><b>Resources</b><a class="l" href="#docs">Documentation</a><a class="l" href="#" data-sup>Support Server</a><a class="l" href="#" data-inv>Invite</a></div>
 <div><b>Legal</b><a class="l" href="#terms">Terms of Service</a><a class="l" href="#privacy">Privacy Policy</a><a class="l" href="#refunds">Refund Policy</a></div></div>
-<div class="cp"><span>© 2026 Sepulchre. All rights reserved.</span><span>Built by <b>enviedsince</b> &amp; <b>jenhaise</b></span><button type="button" id="rmb" class="rmb" aria-pressed="false">Reduce motion: Off</button></div></div>
+<div class="cp"><span>© 2026 Sepulchre. All rights reserved.</span><span>Built by <b>enviedsince</b> &amp; <b>jenhaise</b></span><button type="button" id="bgb" class="rmb">Background: Breathe</button><button type="button" id="rmb" class="rmb" aria-pressed="false">Reduce motion: Off</button></div></div>
 <script>
+try{const b=localStorage.getItem('sep_bg');if(b==='aurora'||b==='heart')document.documentElement.dataset.bg=b}catch(e){}
 try{if(localStorage.getItem('sep_rm')==='1')document.documentElement.classList.add('rm')}catch(e){}
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 history.scrollRestoration='manual';
@@ -578,7 +604,7 @@ const CI={'Build & Design':'layout','Tickets & Customer Support':'ticket','Voice
 const pills=r=>{const L=CMDS.map(c=>[c[2],c[0]]);const x=(r?[...L].reverse():L);const row=x.concat(x);return `<div class="mq ${r?'rev':''}" style="margin-top:14px"><div style="animation-duration:${r?480:430}s">${row.map(t=>`<span class="pl cm">${ic(CI[t[1]]||'hash',16)}${t[0]}</span>`).join('')}</div></div>`};
 const btns=()=>`<a class="bp big" href="#purchase">${MONEY(19)}Purchase</a><a class="bw big" href="${INV}" target="_blank" rel="noopener">${DC}Add to Discord</a>`;
 const coin=(c,s,cl='')=>`<div class="coin ${cl}" style="${s}">${c}</div>`;
-const payment=()=>`<div class="pay"><div><div style="font-size:15px;color:var(--mu)"><b style="color:#fff">Sepulchre</b> / per server</div><div class="price" style="margin-top:14px"><sup>$</sup><span class="prn" data-n="5">5</span><small>.<span class="prn" data-n="99" data-p="2">99</span></small> <span style="font-size:18px;-webkit-text-fill-color:var(--mu);letter-spacing:0">USD / one time</span></div><p style="color:var(--mu);margin:16px 0 22px;max-width:38ch;font-size:15px">Premium functionality for one designated Discord server, subject to the published license terms.</p><a class="bp big" href="${SUP}" target="_blank" rel="noopener">${MONEY(19)}Purchase for $5.99</a><p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;max-width:40ch">You will be taken to our official Discord server to arrange a purchase. No checkout occurs on this website.</p></div><div><div class="eb2" style="margin:0 0 6px">What your license includes</div><ul class="ck">${['Server-specific premium access','One-time purchase','No recurring subscription','Configurable modules','Available premium functionality','License transfer subject to policy'].map(t=>`<li>${ic('check',16)}${t}</li>`).join('')}</ul></div><div class="coins">${coin(pb('wise'),'left:0;top:96px;--z:-12deg;animation-delay:-1s')}${coin(pb('skrill'),'left:94px;top:40px;--z:9deg;animation-delay:-3s')}${coin(pb('bitcoin'),'left:188px;top:92px;--z:-7deg;animation-delay:-2s')}${coin('<img src="'+LOGO+'" alt="">','left:284px;top:52px;--z:-4deg;animation-delay:-4s','big')}${coin(pb('ethereum'),'left:412px;top:96px;--z:8deg;animation-delay:-5s')}${coin(pb('payoneer'),'left:506px;top:38px;--z:-10deg;animation-delay:-6s')}${coin(pb('chainlink'),'left:600px;top:92px;--z:7deg;animation-delay:-2.5s')}</div></div><div class="pmw"><p>Supported payment methods</p><div>${['crypto','skrill','payoneer','wise'].map(pmc).join('')}</div><small>Payment instructions, transfer details, and method availability must be confirmed with authorized Sepulchre staff in our Discord server. Never send money to unsolicited accounts.</small></div>`;
+const payment=()=>`<div class="pay"><div><div style="font-size:15px;color:var(--mu)"><b style="color:#fff">Sepulchre</b> / per server</div><div class="price" style="margin-top:14px"><sup>$</sup><span class="prn" data-n="5">5</span><small>.<span class="prn" data-n="99" data-p="2">99</span></small> <span style="font-size:18px;-webkit-text-fill-color:var(--mu);letter-spacing:0">USD / one time</span></div><p style="color:var(--mu);margin:16px 0 22px;max-width:38ch;font-size:15px">Premium functionality for one designated Discord server, subject to the published license terms.</p><a class="bp big" href="${SUP}" target="_blank" rel="noopener">${MONEY(19)}Purchase for $5.99</a><p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;max-width:40ch">You will be taken to our official Discord server to arrange a purchase. No checkout occurs on this website.</p></div><div><div class="eb2" style="margin:0 0 6px">What your license includes</div><ul class="ck">${['Server-specific premium access','One-time purchase','No recurring subscription','Configurable modules','Available premium functionality','License transfer subject to policy'].map(t=>`<li>${ic('check',16)}${t}</li>`).join('')}</ul></div><div class="coins orb2">${coin('<img src="'+LOGO+'" alt="">','left:283px;top:58px;animation-delay:-2s','big')}${['bitcoin','ethereum','chainlink','skrill','payoneer','wise'].map(k=>`<div class="coin cn2">${pb(k)}</div>`).join('')}</div></div><div class="pmw"><p>Supported payment methods</p><div>${['crypto','skrill','payoneer','wise'].map(pmc).join('')}</div><small>Payment instructions, transfer details, and method availability must be confirmed with authorized Sepulchre staff in our Discord server. Never send money to unsolicited accounts.</small></div>`;
 const cta=()=>`<div class="w">${orb('255 50 90','20%','-40px',700)}<div class="card cta"><p>Practical guides for installing, configuring, and understanding Sepulchre.</p><h2>Get set up. <em>Stay in control.</em></h2><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">${btns()}</div></div></div>`;
 
 const COTD=()=>CMDS[Math.floor(Date.now()/864e5)%CMDS.length];
@@ -898,8 +924,17 @@ const f=ts=>{if(ts-lt<34&&ts-t0<dur){requestAnimationFrame(f);return}lt=ts;const
 const sio=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting){sio.unobserve(e.target);setTimeout(()=>scr(e.target),140)}}),{threshold:.7});
 /* price roll */
 const pio=new IntersectionObserver(en=>en.forEach(e=>{if(!e.isIntersecting)return;pio.unobserve(e.target);if(rm())return;e.target.querySelectorAll('.prn').forEach(b=>{const n=+b.dataset.n,pd=+b.dataset.p||0,t0=performance.now()+120;const f=ts=>{const p=Math.min(1,Math.max(0,(ts-t0)/1100)),v=Math.round(n*(1-Math.pow(1-p,4)));b.textContent=pd?String(v).padStart(pd,'0'):v;if(p<1)requestAnimationFrame(f)};b.textContent=pd?'00':'0';requestAnimationFrame(f)})}),{threshold:.6});
+
+/* payment orbit ring: logos circle the sigil, pass in front and behind, and drift away from the cursor */
+const wireOrbit=()=>{const st=$('.orb2');if(!st||st.dataset.w)return;st.dataset.w=1;const cs=[...st.querySelectorAll('.cn2')],off=cs.map(()=>({x:0,y:0}));let vis=0,raf=0,mx=-999,my=-999;const t0=performance.now(),W=700,cx=350,cy=124,RX=290,RY=64;
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+const fr=ts=>{raf=0;if(!vis||!st.isConnected)return;raf=requestAnimationFrame(fr);const t=document.documentElement.classList.contains('rm')?0:(ts-t0)/1000,r=st.getBoundingClientRect(),k=r.width/W;
+cs.forEach((c,i)=>{const a=t*.3+i*(Math.PI*2/cs.length),x=cx+RX*Math.cos(a),y=cy+RY*Math.sin(a),d=Math.sin(a),s=.7+.32*(d*.5+.5),px=r.left+x*k,py=r.top+y*k,dx=px-mx,dy=py-my,dist=Math.hypot(dx,dy),f=dist<200?(1-dist/200):0,o=off[i];
+o.x+=(f*dx/(dist||1)*55/k-o.x)*.12;o.y+=(f*dy/(dist||1)*36/k-o.y)*.12;
+c.style.transform=`translate3d(${(x-50+o.x).toFixed(1)}px,${(y-50+o.y).toFixed(1)}px,0) scale(${s.toFixed(3)})`;c.style.zIndex=Math.round(d*10+10);c.style.opacity=(.55+.45*(d*.5+.5)).toFixed(2)})};
+new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(fr)}).observe(st)};
 /* watch route changes */
-const wc=()=>{wireSim();wireQz();wireUb();$$('#app h2:not([data-so]),#app .ban h1:not([data-so])').forEach(h=>{h.dataset.so=1;sio.observe(h)});$$('#app .price:not([data-po])').forEach(p=>{p.dataset.po=1;pio.observe(p)});sgDirty=1;pxDirty=1};
+const wc=()=>{wireOrbit();wireSim();wireQz();wireUb();$$('#app h2:not([data-so]),#app .ban h1:not([data-so])').forEach(h=>{h.dataset.so=1;sio.observe(h)});$$('#app .price:not([data-po])').forEach(p=>{p.dataset.po=1;pio.observe(p)});sgDirty=1;pxDirty=1};
 new MutationObserver(wc).observe($('#app'),{childList:true});
 /* scroll-driven sigil + orb parallax */
 let sgDirty=1,pxDirty=1,sgc=null,pxs=[];
@@ -920,6 +955,10 @@ const mb=document.createElement('div');mb.id='mb';mb.setAttribute('aria-label','
 let dh=0;const dhu=()=>{dh=document.documentElement.scrollHeight};const mbu=()=>{if(!dh)dhu();const h=location.hash.slice(1)||'home',show=scrollY>760&&h!=='purchase'&&scrollY+innerHeight<dh-460;mb.classList.toggle('on',show)};
 let mq3=0;addEventListener('scroll',()=>{if(mq3)return;mq3=requestAnimationFrame(()=>{mq3=0;mbu()})},{passive:true});addEventListener('hashchange',()=>{dh=0;setTimeout(dhu,900);mbu()});addEventListener('resize',()=>{dh=0;mbu()});setTimeout(dhu,1500);
 wc();sigil();mbu()}
+
+/* background style toggle (footer): breathe / aurora / heartbeat */
+(()=>{const R=document.documentElement,b=$('#bgb');if(!b)return;const N={'':'Breathe',aurora:'Aurora',heart:'Heartbeat'},O=['','aurora','heart'];const lab=()=>{b.textContent='Background: '+N[R.dataset.bg||'']};lab();
+b.addEventListener('click',()=>{const n=O[(O.indexOf(R.dataset.bg||'')+1)%3];if(n)R.dataset.bg=n;else delete R.dataset.bg;try{localStorage.setItem('sep_bg',n)}catch(e){}lab()})})();
 addEventListener('hashchange',()=>{document.body.classList.remove('mqp');route();reveal()});onScroll();route();initDots();animReach();intro().then(()=>{window._rs&&window._rs();initExtra();initFx();initHi();reveal();requestAnimationFrame(()=>mvhl($('a.on',its)))});
 
 </script><script defer src="assets/sepulchre-live-reach.js?v=4"></script></body></html>
